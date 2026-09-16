@@ -92,3 +92,14 @@ class Rectangle{
 
 var r = new Rectangle(10,20);
 console.log(r.area);
+
+
+//let es para variables dentro de funciones (como variables privadas)
+//var para variables globales (como variables publicas)
+
+
+
+var arr = [1,2,3,4,5];
+
+arr.find(x => x > 2); //Devuelve el primer elemento que cumpla la condición
+
