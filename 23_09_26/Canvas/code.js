@@ -2,9 +2,27 @@ var canvas = /** @type {HTMLCanvasElement} */ (null);
 
 var ctx = /** @type {CanvasRenderingContext2D} */ (null);
 
+var mouse = {x:0, y:0}
+
+
 function init() {
     canvas = document.getElementById("myCanvas");
     ctx = canvas.getContext("2d");
+
+    document.onmousemove = function(evt){
+        let rect = canvas.getBoundingClientRect();
+        mouse.x = evt.clientX - rect.left;
+        mouse.y = evt.clientY - rect.top;
+    }
+
+    setInterval(Draw, 1000/30);
+    Draw();
+}
+
+
+function Draw(){
+
+    ctx.clearRect(0,0, canvas.width, canvas.height);
 
 
     //TODO ESTO ES PARA PONER TIPOS DE COLORES
@@ -29,6 +47,7 @@ function init() {
     //orange rectangle with blue stroke
     ctx.fillStyle = 'orange';
     ctx.strokeStyle = 'lightBlue';
+    ctx.beginPath();
     ctx.rect(300, 100, 200,200); //rect es una orden de dibujo, pero no lo dibuja, solo lo prepara
     ctx.rect(400, 400, 20,20); // 
     ctx.fill(); //ejecuta toda las ordendes guardadas, en este caso de dibujo
@@ -69,10 +88,15 @@ function init() {
     ctx.lineWidth = 4;
     ctx.beginPath();
     ctx.moveTo(550,450);
-    ctx.quadraticCurveTo(600,450,620,400); //el movimiento de la curva
+    ctx.quadraticCurveTo(mouse.x, mouse.y,620,400); //el movimiento de la curva
     ctx.stroke();
 
 
+    //move red circle
+    ctx.fillStyle = 'red';
+    ctx.beginPath();
+    ctx.arc(mouse.x, mouse.y, 4,0, Math.PI *2, false);
+    ctx.fill();
 }
 
 
