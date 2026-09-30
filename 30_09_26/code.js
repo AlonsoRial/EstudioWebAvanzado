@@ -1,6 +1,6 @@
 var canvas = /** @type {HTMLCanvasElement} */ (null);
 var ctx = /**  @type {CanvasRenderingContext2D} */ (null);
-
+var subaru = null;
 
 var mouse = {x:0, y:0}
 
@@ -15,13 +15,40 @@ function Init()
         mouse.y = evt.clientY - rect.top;
     }
 
+    subaru = new Image();
+    subaru.src = "./subaru2.webp"
+
+    subaru.width = "100";
+    subaru.height = "100px";
+    subaru.onload = () => {
+        setInterval(Ima, 1000/60);
+    }
+
 /*     setInterval(Draw, 1000/60);
     Draw(); */
 
-    setInterval(Ejercicio, 1000/60);
-    Ejercicio();
+/*     setInterval(Ejercicio, 1000/60);
+    Ejercicio(); */
+
+   
+    Ima();
 }
 
+
+function Ima()
+{
+
+    ctx.drawImage(subaru,0,0);
+
+    let grd = ctx.createLinearGradient(0,0,canvas.width, mouse.y);
+
+    grd.addColorStop(0,"rgba(255, 112, 184, 0.87)");
+    grd.addColorStop( Math.max( mouse.x / canvas.width), "#3dd");
+    grd.addColorStop(1, "rgb(31, 92, 54)"); 
+
+    ctx.fillStyle = grd;
+    ctx.fillRect(0,0,canvas.width, canvas.height); 
+}
 
 function Ejercicio()
 {
