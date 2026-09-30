@@ -37,7 +37,7 @@ function Ejercicio()
 
 
     //Circulo
-    ctx.arc(100,100,150,0, Math.PI * 3, false);
+     ctx.arc(100,100,150,0, Math.PI * 2, false);
     ctx.closePath(); 
 
 
