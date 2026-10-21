@@ -66,7 +66,7 @@ function Draw() {
 
     grd.addColorStop(0,"rgba(0, 0, 0, 0.87)");
 
-    grd.addColorStop(1, "rgb(48, 42, 148)"); 
+    grd.addColorStop(1, "rgb(34, 32, 56)"); 
 
     ctx.fillStyle = grd;
     ctx.fillRect(0,0,canvas.width, canvas.height); 
@@ -80,6 +80,8 @@ function Draw() {
         ctx.drawImage(sun, -sun.width/2, -sun.height/2);
   
 
+        ctx.save();
+            ctx.rotate(earthRotation/8);
         ctx.save(); //earth
             ctx.translate(700,0);
             ctx.rotate(earthRotation);
@@ -99,7 +101,7 @@ function Draw() {
                 ctx.restore();
 
         ctx.restore();
-
+        ctx.restore();
 
         ctx.save(); //mars
             ctx.translate(1200,0);
