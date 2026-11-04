@@ -20,7 +20,9 @@ var graphicAssets = {
         img: null,
         path: "./assets/broom.png"
     },
-}
+};
+
+var audioHit = null;
 
 var witch = null;
 
@@ -57,6 +59,9 @@ function Init() {
     document.onkeyup = (evt) => {
         keys[evt.code] = false;
     }
+
+    //load audio assets
+    audioHit = document.getElementById("audio_hit");
 
     LoadImages(Start);
 }

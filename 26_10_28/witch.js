@@ -53,6 +53,10 @@ class Witch {
                 }
             };
             this.brooms.push(broom);
+
+            audioHit.currentTime = 0;
+            audioHit.play();
+
             this.fireRateAux = 0;
         }
 
@@ -60,6 +64,18 @@ class Witch {
         this.brooms.forEach(broom => {
             broom.Update(deltaTime);
         });
+
+        for(let i = 0; i > this.brooms.length; i++){
+            const broom = this.brooms[i];
+            broom.Update(deltaTime);
+
+            if(broom.y < -10)
+                {
+                    //broom has left the scene, remove it
+                    this.brooms.splice(i,1);
+                    i--;
+                }
+        }
     }
 
     Draw() {
