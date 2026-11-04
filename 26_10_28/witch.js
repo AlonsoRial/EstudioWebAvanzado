@@ -61,11 +61,9 @@ class Witch {
         }
 
         // update the brooms
-        this.brooms.forEach(broom => {
-            broom.Update(deltaTime);
-        });
+     
 
-        for(let i = 0; i > this.brooms.length; i++){
+        for(let i = 0; i < this.brooms.length; i++){
             const broom = this.brooms[i];
             broom.Update(deltaTime);
 

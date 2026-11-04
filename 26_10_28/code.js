@@ -20,11 +20,22 @@ var graphicAssets = {
         img: null,
         path: "./assets/broom.png"
     },
+    bullet:{
+        img: null,
+        path: "./assets/Bala-Escopeta.png"
+    },
+    enemy:{
+        img: null,
+        path: "./assets/Cazador de brujas.png"
+    }
 };
 
 var audioHit = null;
 
 var witch = null;
+
+var enemies = [];
+var enemiesCount = 1;
 
 function LoadImages(onloaded) {
     let imagesToLoad = 0;
@@ -72,6 +83,12 @@ function Start() {
     // initialize game logic
     witch = new Witch(canvas.width / 2, canvas.height - 100, 100, graphicAssets.witch.img);
 
+    //create the enemies
+    for (let i = 0; i < enemiesCount; i++) {
+        const enemy = new Enemy(50,50,100, graphicAssets.enemy.img);
+        enemies.push(enemy);
+    }
+
     Loop();
 }
 
@@ -90,6 +107,8 @@ function Loop() {
 
 function Update(deltaTime) {
     witch.Update(deltaTime);
+
+    enemies.forEach(enemy => enemy.Update(deltaTime));
 }
 
 function Draw() {
@@ -101,6 +120,7 @@ function Draw() {
     // draw the Witch
     witch.Draw();
 
+    enemies.forEach(enemy => enemy.Draw());
     // deltaTime
     ctx.fillStyle = "black";
     ctx.font = "normal 12px Comic Sans MS";
