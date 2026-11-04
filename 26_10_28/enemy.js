@@ -7,8 +7,13 @@ class Enemy {
         this.life = life;
         this.img = img;
 
+        this.goingRight = true;
+
         this.fireRate = 0.5;
         this.fireRateAux =0;
+
+        this.boundingRadius = 20;
+        this.boundingRadiusSqr = this.boundingRadius * this.boundingRadius;
 
         this.bullets = [];
     }
@@ -17,7 +22,18 @@ class Enemy {
         this.rotation = Math.cos(timeSinceStart * 4) * 0.2;
 
         // movement
-        
+        if(this.goingRight){
+            this.x += this.speed * deltaTime;
+            if(this.x >= canvas.width){
+                this.goingRight = false;
+            }
+        }
+        else{
+            this.x -= this.speed* deltaTime;
+            if(this.x <= 0){
+                this.goingRight = true;
+            }
+        }
 
         // shot
         // this.fireRateAux += deltaTime;
@@ -76,6 +92,12 @@ class Enemy {
 
         ctx.restore();
 
+
+        //draw to bouding radius
+        ctx.beginPath();
+        ctx.fillStyle = "rgba(255, 0, 0, 0.25)";             
+        ctx.arc(this.x, this.y, this.boundingRadius, 0 , Math.PI * 2);
+        ctx.fill();
 
         // draw the bullets
         this.bullets.forEach(bullet => {
