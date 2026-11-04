@@ -1,16 +1,16 @@
-*{
+* {
     margin: 0;
     padding: 0;
-    box-sizing:content-box;
+    box-sizing: content-box;
 }
 
-body{
+body {
     background-color: grey;
     text-align: center;
 }
 
-canvas{
-    background-color: white;
-    border: 1px solid black;
+canvas {
     margin-top: 26px;
+    background-color: white;
+    border: solid 1px black;
 }
